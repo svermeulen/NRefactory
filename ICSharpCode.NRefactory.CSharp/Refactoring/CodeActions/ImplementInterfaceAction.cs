@@ -72,20 +72,8 @@ namespace ICSharpCode.NRefactory.CSharp.Refactoring
 			}
 			
 			foreach (var kv in nodes) {
-				if (kv.Key.Kind == TypeKind.Interface) {
-					yield return new PreProcessorDirective(
-						PreProcessorDirectiveType.Region,
-						string.Format("{0} implementation", kv.Key.Name));
-				} else {
-					yield return new PreProcessorDirective(
-						PreProcessorDirectiveType.Region,
-						string.Format("implemented abstract members of {0}", kv.Key.Name));
-				}
 				foreach (var member in kv.Value)
 					yield return member;
-				yield return new PreProcessorDirective(
-					PreProcessorDirectiveType.Endregion
-				);
 			}
 		}
 		
